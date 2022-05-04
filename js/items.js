@@ -61,7 +61,7 @@ $(".bookshelf").each(function () {
 
 // Books
 var BookID = 1;
-$("#FloorFive .shelf .book").each(function () {
+$(".bookshelf .shelf .book").each(function () {
 	//console.group("Floor Five: Book " + BookID);
 	$(this).attr("id", "book" + BookID);
 	// burgandy   = 2     2

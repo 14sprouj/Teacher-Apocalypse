@@ -61,17 +61,19 @@ setInterval(function () {
 			}
 		});
 
-		var FloorName = $(".level-map.active").attr("id");
-
 		try {
-			var map = document.getElementById(FloorName);
+			var map = document.getElementById("floor");
 			// Too High
-			if (map.offsetTop > player.offsetTop - player.offsetHeight / 2) {
-				document.getElementById("player").style.top = map.offsetTop + player.offsetHeight / 2 + "px";
+			if (map.offsetTop > player.offsetTop - (player.offsetHeight / 2)) {
+				document.getElementById("player").style.top = map.offsetTop + (player.offsetHeight / 2) + "px";
+				canMoveUp = false;
+			}
+			if (map.offsetTop == player.offsetTop) {
 				canMoveUp = false;
 			}
 			if (map.offsetTop + 1 == player.offsetTop - player.offsetHeight / 2) {
 				canMoveUp = false;
+				console.warn("Touching top of map");
 			}
 
 			// Too Low
