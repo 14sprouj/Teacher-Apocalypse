@@ -35,7 +35,7 @@ $("zombie").each(function () { // Every time zombie is seen in html file, the co
 
 function getHypotenuse(zombieX, zombieY, playerX, playerY) {
 	var hypotenuse = Math.sqrt((zombieX - playerX) * (zombieX - playerX) + (zombieY - playerY) * (zombieY - playerY));
-	console.log("Distance: " + hypotenuse + "px");
+	//console.log("Distance: " + hypotenuse + "px");
 	return hypotenuse;
 }
 
@@ -46,7 +46,7 @@ function getAngle(zombieX, zombieY, playerX, playerY) {
 // Move Zombies
 setInterval(function () {
 	$("zombie.active").each(function () {
-		console.group("Zombie " + this.id + " and Player Distances");
+		//console.group("Zombie " + this.id + " and Player Distances");
 		var playerCentX = player.offsetLeft + (player.offsetWidth / 2);
 		var playerCentY = player.offsetTop + (player.offsetHeight / 2);
 		var zombieCentX = this.offsetLeft + (this.offsetWidth / 2);
@@ -55,7 +55,7 @@ setInterval(function () {
 		var zombieBlocked = false;
 
 		var hypotenuse = Math.sqrt((zombieCentX - playerCentX) * (zombieCentX - playerCentX) + (zombieCentY - playerCentY) * (zombieCentY - playerCentY));
-		console.log("Distance: " + hypotenuse + "px");
+		//console.log("Distance: " + hypotenuse + "px");
 		
 		var angle = Math.asin((zombieCentY - playerCentY) / hypotenuse);
 		if (playerCentX < zombieCentX && playerCentY < zombieCentY) {
@@ -66,9 +66,9 @@ setInterval(function () {
 		}
 		var direction = -angle / Math.PI;
 		
-		console.log("Direction: " + (direction * (180 / Math.PI)) + "&deg;");
+		//console.log("Direction: " + (direction * (180 / Math.PI)) + "&deg;");
 		var speed = parseInt($(this).attr("speed"));
-		console.log("Speed: " + speed);
+		//console.log("Speed: " + speed);
 		speed = speed / 0.9;
 		this.style.left = this.offsetLeft + (speed * Math.cos(direction * Math.PI)) + "px";
 		this.style.top = this.offsetTop + (speed * Math.sin(direction * Math.PI)) + "px";
@@ -76,6 +76,6 @@ setInterval(function () {
 			var health = $(this).attr("attack");
 			deductPlayerHealth(health);
         }
-		console.groupEnd();
+		//console.groupEnd();
     })
 }, 50)

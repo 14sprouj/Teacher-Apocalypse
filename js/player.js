@@ -106,6 +106,44 @@ setInterval(function () {
 			console.error(err.message);
 		}
 
+		$(".obsticle").each(function () {
+			this.playerCollide = false;
+			if (this.offsetLeft < player.offsetLeft + player.offsetWidth && this.offsetLeft + this.offsetWidth > player.offsetLeft && this.offsetTop < player.offsetTop + player.offsetHeight && this.offsetHeight + this.offsetTop > player.offsetTop) {
+				console.group("Touching obsticle");
+				this.playerCollide = true;
+				console.log("Obsticle ID:" + this.id);
+				console.groupEnd();
+			}
+
+			// is player left of obsticle?
+			if (player.offsetLeft < this.offsetLeft - 20 && this.playerCollide) {
+				canMoveLeft = false;
+				document.getElementById("player").style.left = this.offsetLeft + "px";
+				console.warn("Collide on left of obsticle");
+			}
+
+			// is player right of obsticle?
+			if (player.offsetLeft > this.offsetLeft + this.offsetWidth - 20 && this.playerCollide) {
+				canMoveLeft = false;
+				document.getElementById("player").style.left = this.offsetLeft + this.offsetWidth + player.offsetWidth / 2 + "px";
+				console.warn("Collide on right of obsticle");
+			}
+
+			// is player up of obsticle?
+			if (player.offsetTop + player.offsetHeight < this.offsetTop + 20 && this.playerCollide) {
+				canMoveDown = false;
+				document.getElementById("player").style.top = this.offsetTop - player.offsetHeight / 2 + "px";
+				console.warn("Collide on up of obsticle");
+			}
+
+			// is player down of obsticle?
+			if (player.offsetTop > this.offsetTop + this.offsetHeight - 20 && this.playerCollide) {
+				canMoveUp = false;
+				document.getElementById("player").style.top = this.offsetTop + this.offsetHeight + player.offsetHeight / 2 + "px";
+				console.warn("Collide on down of obsticle");
+			}
+		});
+
 		if (leftPressed && gameActive && canMoveLeft) {
 			player.style.left = player.offsetLeft - playerSpeed + "px"
 		}
