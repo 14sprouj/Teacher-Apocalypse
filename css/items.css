@@ -17,7 +17,7 @@
   /* This is mostly intended for prototyping. please download the pattern and re-host for production environments. Thank you! */
   padding: 10px;
   border: solid 0.3vh #fffa;
-/* left: 5vh; *//* position: absolute; */}
+}
 .shelf .book {
   border-style: solid;
   background: -webkit-repeating-linear-gradient(90deg, #fff, #efefef 1px, #ccc 1px, #ccc 2px);
