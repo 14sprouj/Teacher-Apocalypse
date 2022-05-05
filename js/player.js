@@ -119,6 +119,6 @@ setInterval(function () {
 			player.style.top = player.offsetTop + playerSpeed + "px"
 		}
 		//console.groupEnd();
-	}
+	} // Only run if gameActive
 }, 10)
 
