@@ -11,9 +11,11 @@ function deductPlayerHealth(points) {
 		playerHealth -= points;
 		displayNewHealth(playerHealth);
 	}
-	if (playerHealth < 0) {
+
+	if (playerHealth <= 0) {
 		playerHealth = 0;
 		displayNewHealth(playerHealth);
+		location.replace("playerLoses.html");
 	}
 }
 
