@@ -1,14 +1,83 @@
 #player {
-    background-color: blue; /* TEMPORARY */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     height: 2vh;
     width: 2vh;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 100%;
     z-index: 5;
     transition: left ease-in-out 0.01s, top ease-in-out 0.01s;
+}
+
+#player .head {
+    height: 1.1vh;
+    width: 1.1vh;
+    background: gray;
+    border-radius: 4px 4px 0 0;
+}
+
+#player .neck {
+    height: 0.1538461538vh;
+    width: 0.6vh;
+    background: gray;
+}
+
+#player .torso {
+    height: 1.5vh;
+    width: 1.5vh;
+    background: #ff0000;
+}
+
+#player .arms {
+    position: absolute;
+    top: 1.3vh;
+    left: 0.55vh;
+}
+
+#player .arm {
+    height: 1.3vh;
+    width: 0.45vh;
+    position: absolute;
+    background: #ff0000;
+}
+
+#player .arm .left {
+    background: #ff0000;
+    left: -0.25vh;
+    transform: rotate(10deg);
+}
+
+#player .arms .right {
+    background: #ff0000;
+    left: 1.65vh;
+    transform: rotate(345deg);
+}
+
+#player .legs {
+    position: absolute;
+    top: 2.7vh;
+    left: 1.2vh;
+    height: 1.45vh;
+}
+
+#player .leg {
+    height: 1.45vh;
+    width: 0.6vh;
+    background: gray;
+    position: absolute;
+}
+
+#player .legs .left {
+    background: gray;
+    left: -0.5vh;
+}
+
+#player .legs .right {
+    background: black;
+    left: 0.35vh;
 }
 
 zombie {

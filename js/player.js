@@ -1,10 +1,45 @@
+// Render Zombies
+$("#player").each(function () { // Every time zombie is seen in html file, the code below will run
+	var playerHead = document.createElement("div");
+	playerHead.classList.add("head");
+	this.appendChild(playerHead);
+	var playerNeck = document.createElement("div");
+	playerNeck.classList.add("neck");
+	this.appendChild(playerNeck);
+	var playerTorso = document.createElement("div");
+	playerTorso.classList.add("torso");
+	this.appendChild(playerTorso);
+	var playerArms = document.createElement("div");
+	playerArms.classList.add("arms");
+	this.appendChild(playerArms);
+	var playerArmL = document.createElement("div");
+	playerArmL.classList.add("left");
+	playerArmL.classList.add("arm");
+	playerArms.appendChild(playerArmL);
+	var playerArmR = document.createElement("div");
+	playerArmR.classList.add("right");
+	playerArmR.classList.add("arm");
+	playerArms.appendChild(playerArmR);
+	var playerLegs = document.createElement("div");
+	playerLegs.classList.add("legs");
+	this.appendChild(playerLegs);
+	var playerLegL = document.createElement("div");
+	playerLegL.classList.add("left");
+	playerLegL.classList.add("leg");
+	playerLegs.appendChild(playerLegL);
+	var playerLegR = document.createElement("div");
+	playerLegR.classList.add("right");
+	playerLegR.classList.add("leg");
+	playerLegs.appendChild(playerLegR);
+});
+
 // Player movement
 var upPressed = false;
 var rightPressed = false;
 var downPressed = false;
 var leftPressed = false;
 var spacePressed = false;
-var player = document.getElementById("player");
+var player = document.getElementById("#player");
 
 var score = 0;
 var totalZombies = 2; // Number of zombies on the level
