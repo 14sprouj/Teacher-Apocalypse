@@ -39,7 +39,7 @@ var rightPressed = false;
 var downPressed = false;
 var leftPressed = false;
 var spacePressed = false;
-var player = document.getElementById("#player");
+var player = document.getElementById("player");
 
 var score = 0;
 var totalZombies = 2; // Number of zombies on the level
