@@ -158,19 +158,19 @@ zombie .legs .right {
     left: 0.35vh;
 }
 
-zombie#ZombieF5Z1 {
+zombie#ZombieL1Z1 {
     position: absolute;
     top: 10vh;
     right: 9vw;
 }
 
-zombie#ZombieF5Z2 {
+zombie#ZombieL1Z2 {
   position: absolute;
   top: 16vh;
   left: 11vw;
 }
 
-zombie#ZombieF4Z1 {
+zombie#ZombieL2Z1 {
     position: absolute;
     top: 10vh;
     right: 9vw;
