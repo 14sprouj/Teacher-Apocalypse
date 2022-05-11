@@ -90,15 +90,19 @@ font-weight: bold;
     }
     100% {
         opacity: 1;
-        background-color: #00ff00;
+        background-color: #ff0000;
+        background: -webkit-radial-gradient(circle, #ff0000, #ff6a00);
+        background: -moz-radial-gradient(circle, #ff0000, #ff6a00);
+        background: radial-gradient(circle, #ff0000, #ff6a00);
     }
 }
 
 #btnQuitWindow {
-    background-color: #ff0000;
+    background-color: #ff6a00;
     border-radius: 10px;
     border: 1px solid #000000;
     font-family: "Arial";
+    font-weight: bold;
     color: #ff6a00;
     transition: ease-in-out;
     animation-name: flashQuitBtn;

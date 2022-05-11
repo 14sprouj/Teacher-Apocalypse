@@ -3,7 +3,7 @@
     align-items: center;
     flex-direction: column;
     height: 4vh;
-    width: 2.8vh;
+    width: 4vh;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -34,7 +34,7 @@
 #player .arms {
     position: absolute;
     top: 1.3vh;
-    left: 0.55vh;
+    left: 1.05vh;
 }
 
 #player .arm {
@@ -44,7 +44,7 @@
     background: #ff0000;
 }
 
-#player .arm .left {
+#player .arms .left {
     background: #ff0000;
     left: -0.25vh;
     transform: rotate(10deg);
@@ -59,7 +59,7 @@
 #player .legs {
     position: absolute;
     top: 2.7vh;
-    left: 1.2vh;
+    left: 1.7vh;
     height: 1.45vh;
 }
 
