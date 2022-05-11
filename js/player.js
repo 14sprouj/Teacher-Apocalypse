@@ -152,7 +152,7 @@ setInterval(function () {
 
 			// is player left of obsticle?
 			if (player.offsetLeft < this.offsetLeft - 20 && this.playerCollide) {
-				canMoveLeft = false;
+				canMoveRight = false;
 				document.getElementById("player").style.left = this.offsetLeft + "px";
 				console.warn("Collide on left of obsticle");
 			}
