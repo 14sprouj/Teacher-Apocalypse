@@ -1,4 +1,4 @@
-// Render Zombies
+// Render Player
 $("#player").each(function () { // Every time zombie is seen in html file, the code below will run
 	var playerHead = document.createElement("div");
 	playerHead.classList.add("head");
