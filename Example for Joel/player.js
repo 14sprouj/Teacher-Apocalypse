@@ -3,22 +3,20 @@ var leftpressed = false;
 var uppressed = false;
 var downpressed = false;
 
-var directionDescription = "";
-
 var scr_width = 1000;
 var scr_height = 750;
 
 var pw = 40;
 var ph = 40;
-var px = (scr_width - pw) / 2;
-var py = (scr_height - ph) / 2;
+var px = 600;
+var py = 100;
 
-var obx = 800;
-var oby = 600;
 var obw = 100;
 var obh = 100;
+var obx = (scr_width - obw) / 2;
+var oby = (scr_height - obh) / 2;
 
-var p_speed = 15;
+var p_speed = 5;
 
 //var player;
 //var info;
@@ -34,7 +32,11 @@ document.addEventListener('keydown', (event) => {
 }, false);
 
 document.addEventListener('keyup', (event) => { 
-	resetkeys();
+	//resetkeys();
+	if (event.key == 'ArrowLeft') leftpressed = false;
+	if (event.key == 'ArrowRight') rightpressed = false;
+	if (event.key == 'ArrowUp') uppressed = false;
+	if (event.key == 'ArrowDown') downpressed = false;
 }, false);
 
 function resetkeys() {
@@ -59,9 +61,8 @@ setInterval(() => {
 }, 50);
 
  
-function move() {
-	directionDescription = "";
-	info.innerHTML = `Player: ${px} ${py} ${pw} ${ph}` + directionDescription;
+ function move() {
+	info.innerHTML = `Player: ${px} ${py} ${pw} ${ph}`;
 	player.style.left = px + "px";
 	player.style.top = py + "px";
 	player.style.width = pw + "px";
@@ -70,15 +71,41 @@ function move() {
 
 function collisiondetection() {
 	if (px + pw > obx - 1 && px < obx + obw + 2 && py + ph > oby - 1 && py < oby + obh + 2) {
-		
-		if (rightpressed) {
-			px = obx - pw - 1;
-			directionDescription += "Right Key pressed <br>";
+		if (rightpressed && downpressed) {
+			if (Math.abs((obx - 1) - (px + pw)) < Math.abs((oby - 1) - (py + ph))) 
+				px = obx - pw - 1;
+			else 
+				py = oby - ph - 1;
 		}
-		if (leftpressed) px = obx + obw + 2;
-		if (downpressed) py = oby - ph - 1;
-		if (uppressed) py = oby + obh + 2;
-		directionDescription;
+		else if (rightpressed && uppressed)
+		{
+			if (Math.abs((oby + obh + 2) - py) > Math.abs((obx - 1) - (px + pw)))
+				px = obx - pw - 1;
+			else
+				py = oby + obh + 2;
+		}
+		else if (leftpressed && downpressed)
+		{
+			if (Math.abs((obx + obw + 2) - px) < Math.abs((oby - 1) - (py + ph)))
+				px = obx + obw + 2;
+			else
+				py = oby - ph - 1;
+		}
+		else if (leftpressed && uppressed)
+		{
+			if (Math.abs((obx + obw + 2) - px) < Math.abs((oby + obh + 2) - py))
+				px = obx + obw + 2;
+			else
+				py = oby + obh + 2;
+		}
+		else if (rightpressed) 
+			px = obx - pw - 1;
+		else if (leftpressed) 
+			px = obx + obw + 2;
+		else if (downpressed) 
+			py = oby - ph - 1;
+		else if (uppressed) 
+			py = oby + obh + 2;
 	}
 	move();
 }

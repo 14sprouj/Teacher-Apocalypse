@@ -1,5 +1,5 @@
 // Render Player
-$("#player").each(function () { // Every time zombie is seen in html file, the code below will run
+$("#player").each(function () {
 	var playerHead = document.createElement("div");
 	playerHead.classList.add("head");
 	this.appendChild(playerHead);
@@ -33,18 +33,19 @@ $("#player").each(function () { // Every time zombie is seen in html file, the c
 	playerLegs.appendChild(playerLegR);
 });
 
-// Player movement
+// Declare variables
 var upPressed = false;
 var rightPressed = false;
 var downPressed = false;
 var leftPressed = false;
 var spacePressed = false;
-var player = document.getElementById("player");
+var screenHeight = document.getElementById("floor").offsetHeight;
+var screenWidth = document.getElementById("floor").offsetWidth;
+var playerHeight = document.getElementById("player").offsetHeight;
+var playerWidth = document.getElementById("player").offsetWidth;
+var playerSpeed = 15;
 
-var score = 0;
-var totalZombies = 2; // Number of zombies on the level
-var playerSpeed = 6.5;
-
+// Check key presses
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
@@ -54,6 +55,7 @@ function keyDownHandler(e) {
 	}
 	if (e.code == 'ArrowLeft' || e.code == 'KeyA') {
 		leftPressed = true;
+		console.log("left key pressed");
 	}
 	if (e.code == 'ArrowUp' || e.code == 'KeyW') {
 		upPressed = true;
@@ -78,120 +80,57 @@ function keyUpHandler(e) {
 	}
 }
 
-
+// Player movement
 setInterval(function () {
-	if (gameActive == true) {
-		//console.group("Check");
+	if (leftPressed && player.offsetLeft + (player.offsetWidth / 2) >= playerSpeed) {
+		document.getElementById("player").style.left = player.offsetLeft - playerSpeed + "px";
+	}
+	if (leftPressed && player.offsetLeft < playerSpeed) {
+		document.getElementById("player").style.left = (player.offsetWidth / 2) + "px";
+	}
 
-		var canMoveLeft = true;
-		var canMoveUp = true;
-		var canMoveDown = true;
-		var canMoveRight = true;
+	// ADD RIGHT TOP AND BOTTOM
 
-		$(".zombie.active").each(function () {
-			//console.log("ID: " + this.id);
-			//console.log(this.offsetLeft < player.offsetLeft + player.offsetWidth && this.offsetLeft + this.offsetWidth > player.offsetLeft && this.offsetTop < player.offsetTop + player.offsetHeight && this.offsetHeight + this.offsetTop > player.offsetTop);
-			if (this.offsetLeft < player.offsetLeft + player.offsetWidth && this.offsetLeft + this.offsetWidth > player.offsetLeft && this.offsetTop < player.offsetTop + player.offsetHeight && this.offsetHeight + this.offsetTop > player.offsetTop) {
-				//console.log("Touching");
-			}
-		});
+	collisionDetection();
+}, 50);
 
-		try {
-			var map = document.getElementById("floor");
-			// Too High
-			if (map.offsetTop > player.offsetTop - (player.offsetHeight / 2)) {
-				document.getElementById("player").style.top = map.offsetTop + (player.offsetHeight / 2) + "px";
-				canMoveUp = false;
+function collisionDetection() {
+	$(".obsticle").each(function () {
+		var obx = $(this).offsetLeft;
+		var oby = $(this).offsetTop;
+		if (player.offsetLeft + player.offsetWidth > obx - 1 && px < obx + obw + 2 && player.offsetTop + player.offsetHeight > oby - 1 && py < oby + obh + 2) {
+			if (rightpressed && downpressed) {
+				if (Math.abs((obx - 1) - (player.offsetLeft + player.offsetWidth)) < Math.abs((oby - 1) - (player.offsetTop + player.offsetHeight)))
+					px = obx - player.offsetWidth - 1;
+				else
+					player.offsetTop = oby - player.offsetHeight - 1;
 			}
-			if (map.offsetTop == player.offsetTop) {
-				canMoveUp = false;
+			else if (rightpressed && uppressed) {
+				if (Math.abs((oby + obh + 2) - player.offsetTop) > Math.abs((obx - 1) - (player.offsetLeft + player.offsetWidth)))
+					px = obx - player.offsetWidth - 1;
+				else
+					py = oby + obh + 2;
 			}
-			if (map.offsetTop + 1 == player.offsetTop - player.offsetHeight / 2) {
-				canMoveUp = false;
-				console.warn("Touching top of map");
+			else if (leftpressed && downpressed) {
+				if (Math.abs((obx + obw + 2) - player.offsetLeft) < Math.abs((oby - 1) - (player.offsetTop + player.offsetHeight)))
+					px = obx + obw + 2;
+				else
+					py = oby - player.offsetHeight - 1;
 			}
-
-			// Too Low
-			if (map.offsetTop + map.offsetHeight < player.offsetTop + player.offsetHeight / 2) {
-				document.getElementById("player").style.top = map.offsetTop - player.offsetHeight / 2 + map.offsetHeight + "px";
-				canMoveDown = false;
+			else if (leftpressed && uppressed) {
+				if (Math.abs((obx + obw + 2) - player.offsetLeft) < Math.abs((oby + obh + 2) - player.offsetTop))
+					px = obx + obw + 2;
+				else
+					py = oby + obh + 2;
 			}
-			if (map.offsetTop + map.offsetHeight + 1 == player.offsetTop + player.offsetHeight / 2) {
-				canMoveDown = false;
-			}
-
-			// Too Far Left
-			if (map.offsetLeft > player.offsetLeft - player.offsetWidth / 2) {
-				document.getElementById("player").style.left = map.offsetLeft + player.offsetWidth / 2 + "px";
-				canMoveLeft = false;
-			}
-			if (map.offsetLeft + 1 == player.offsetLeft - player.offsetWidth / 2) {
-				canMoveLeft = false;
-			}
-
-			// Too Far Right
-			if (map.offsetLeft + map.offsetWidth < player.offsetLeft + player.offsetWidth / 2) {
-				document.getElementById("player").style.left = map.offsetLeft - player.offsetWidth / 2 + map.offsetWidth + "px";
-				canMoveRight = false;
-			}
-			if (map.offsetLeft + map.offsetWidth - 1 == player.offsetLeft + player.offsetWidth / 2) {
-				canMoveRight = false;
-			}
-		} catch (err) {
-			console.error(err.message);
+			else if (rightpressed)
+				px = obx - player.offsetWidth - 1;
+			else if (leftpressed)
+				px = obx + obw + 2;
+			else if (downpressed)
+				py = oby - player.offsetHeight - 1;
+			else if (uppressed)
+				py = oby + obh + 2;
 		}
-
-		$(".obsticle").each(function () {
-			this.playerCollide = false;
-			if (this.offsetLeft < player.offsetLeft + player.offsetWidth && this.offsetLeft + this.offsetWidth > player.offsetLeft && this.offsetTop < player.offsetTop + player.offsetHeight && this.offsetHeight + this.offsetTop > player.offsetTop) {
-				console.group("Touching obsticle");
-				this.playerCollide = true;
-				console.log("Obsticle ID:" + this.id);
-				console.groupEnd();
-			}
-
-			// is player left of obsticle?
-			if (player.offsetLeft < this.offsetLeft - 20 && this.playerCollide) {
-				canMoveRight = false;
-				document.getElementById("player").style.left = this.offsetLeft + "px";
-				console.warn("Collide on left of obsticle");
-			}
-
-			// is player right of obsticle?
-			if (player.offsetLeft > this.offsetLeft + this.offsetWidth - 20 && this.playerCollide) {
-				canMoveLeft = false;
-				document.getElementById("player").style.left = this.offsetLeft + this.offsetWidth + player.offsetWidth / 2 + "px";
-				console.warn("Collide on right of obsticle");
-			}
-
-			// is player up of obsticle?
-			if (player.offsetTop + player.offsetHeight < this.offsetTop + 20 && this.playerCollide) {
-				canMoveDown = false;
-				document.getElementById("player").style.top = this.offsetTop - player.offsetHeight / 2 + "px";
-				console.warn("Collide on up of obsticle");
-			}
-
-			// is player down of obsticle?
-			if (player.offsetTop > this.offsetTop + this.offsetHeight - 20 && this.playerCollide) {
-				canMoveUp = false;
-				document.getElementById("player").style.top = this.offsetTop + this.offsetHeight + player.offsetHeight / 2 + "px";
-				console.warn("Collide on down of obsticle");
-			}
-		});
-
-		if (leftPressed && gameActive && canMoveLeft) {
-			player.style.left = player.offsetLeft - playerSpeed + "px"
-		}
-		if (rightPressed && gameActive && canMoveRight) {
-			player.style.left = player.offsetLeft + playerSpeed + "px"
-		}
-		if (upPressed && gameActive && canMoveUp) {
-			player.style.top = player.offsetTop - playerSpeed + "px"
-		}
-		if (downPressed && gameActive && canMoveDown) {
-			player.style.top = player.offsetTop + playerSpeed + "px"
-		}
-		//console.groupEnd();
-	} // Only run if gameActive
-}, 10)
-
+	});
+}
