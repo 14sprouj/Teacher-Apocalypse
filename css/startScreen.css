@@ -91,9 +91,9 @@ font-weight: bold;
     100% {
         opacity: 1;
         background-color: #ff0000;
-        background: -webkit-radial-gradient(circle, #ff0000, #ff6a00);
-        background: -moz-radial-gradient(circle, #ff0000, #ff6a00);
-        background: radial-gradient(circle, #ff0000, #ff6a00);
+        background: -webkit-radial-gradient(circle, #ff0000, #ff6400);
+        background: -moz-radial-gradient(circle, #ff0000, #ff6400);
+        background: radial-gradient(circle, #ff0000, #ff6400);
     }
 }
 
@@ -103,7 +103,6 @@ font-weight: bold;
     border: 1px solid #000000;
     font-family: "Arial";
     font-weight: bold;
-    color: #ff6a00;
     transition: ease-in-out;
     animation-name: flashQuitBtn;
     animation-duration: 1s;
