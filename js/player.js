@@ -41,7 +41,8 @@ var leftPressed = false;
 var spacePressed = false;
 var scr_height = document.getElementById("floor").offsetHeight;
 var scr_width = document.getElementById("floor").offsetWidth;
-var px, py;
+var px = 600;
+var py = 100;
 var playerHeight = document.getElementById("player").offsetHeight;
 var ph = document.getElementById("player").offsetHeight;
 var playerWidth = document.getElementById("player").offsetWidth;
@@ -86,12 +87,17 @@ function keyUpHandler(e) {
 
 // Player movement
 setInterval(function () {
-	if (leftPressed && px >= p_speed) px -= p_speed;
-	if (leftPressed && px < p_speed) px = 0;
-	if (rightPressed && px + pw <= scr_width - p_speed) px += p_speed; 
-	if (rightPressed && px + pw > scr_width - p_speed) px = scr_width - pw;
+	if (leftPressed && px + (pw / 2) >= p_speed) px -= p_speed;
+	if (leftPressed && px < p_speed) px = 0 + (pw / 2);
 
-	// ADD RIGHT TOP AND BOTTOM
+	if (rightPressed && px - (pw / 2) <= scr_width - (pw / 2) - p_speed) px += p_speed; 
+	if (rightPressed && px - (pw / 2) > scr_width - p_speed) px = scr_width - (pw / 2);
+
+	if (upPressed && py + (ph / 2) >= p_speed) py -= p_speed;
+	if (upPressed && py < p_speed) py = 0 + (ph / 2);
+
+	if (downPressed && py - (ph / 2) + ph <= scr_height - p_speed) py += p_speed;
+	if (downPressed && py + ph > scr_height - p_speed) py = scr_height - (ph / 2);
 
 	collisionDetection();
 }, 50);
