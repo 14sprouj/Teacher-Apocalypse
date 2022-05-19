@@ -49,6 +49,7 @@ var playerWidth = 37;
 var pw = 37;
 var playerSpeed = 15;
 var p_speed = 15;
+var obstacleCoOrds;
 
 // Check key presses
 document.addEventListener("keydown", keyDownHandler, false);
@@ -102,7 +103,10 @@ setInterval(function () {
 	collisionDetection();
 }, 50);
 
- function move() {
+function move() {
+	document.getElementById("playerX").innerHTML = px;
+	document.getElementById("playerY").innerHTML = py;
+	document.getElementById("objects").innerHTML = obstacleCoOrds;
 	player.style.left = px + "px";
 	player.style.top = py + "px";
 	player.style.width = pw + "px";
@@ -110,15 +114,19 @@ setInterval(function () {
 }	
 
 function collisionDetection() {
+	obID = 1;
+	obstacleCoOrds = "";
 	$(".obstacle").each(function () {
-		var obh = Math.round(document.getElementById("floor").offsetTop + $(this).outerHeight());
-		var obw = Math.round(document.getElementById("floor").offsetLeft + $(this).outerWidth());
-		var obx = (scr_width - obw) / 2;
-		var oby = (scr_height - obh) / 2;
+		obstacleCoOrds += "ID: " + obID + "<br/>";
+		obstacleCoOrds += "DOM ID: " + this.id + "<br/>";
+		var obh = this.offsetHeight;
+		var obw = this.offsetWidth;
+		obstacleCoOrds += "Height: " + obh + " Width: " + obw + "<br/>";
+		var obx = this.offsetLeft;
+		var oby = this.offsetTop;
+		obstacleCoOrds += "Left: " + obx + " Top: " + oby + "<br/>";
 
-		console.log("obw: ", obw);
-		console.log(obx);
-		console.log(px);
+		
 		
 		if (px + pw > obx - 1 && px < obx + obw + 2 && py + ph > oby - 1 && py < oby + obh + 2) {
 		if (rightPressed && downPressed) {
@@ -158,6 +166,8 @@ function collisionDetection() {
 			py = oby + obh + 2;
 	}
 
-	move();
+		move();
+		obID++;
+		obstacleCoOrds += "<br/>";
 	});
 }
