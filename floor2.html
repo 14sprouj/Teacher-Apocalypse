@@ -37,7 +37,6 @@
 		<button class="btnQuitWindow">Quit</button>
 	</div>
 	<div id="outerGameInterface">
-		<div id="player"></div>
 		<div id="btnPause" class="btnGameInterface">
 			<img src="media/pause.svg" alt="Pause">
 		</div>
@@ -110,8 +109,10 @@
 		</div>
 		<!-- For Testing Purposes -->
 		<a href="floor1.html" id="btnNextLevel">Next Level</a>
+		<div id="info">&nbsp;</div>
 
 		<div id="floor" class="level-map walled-room active">
+			<div id="player"></div>
 			<zombie id="ZombieL1Z1" class="zombie" health="5" attack="5" killpoints="10" speed="5.9"></zombie>
 			<zombie id="ZombieL1Z2" class="zombie" health="5" attack="5" killpoints="10" speed="5.3"></zombie>
 			<div id="FloorFiveDoor" class="door"></div>
