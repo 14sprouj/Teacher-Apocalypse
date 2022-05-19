@@ -1,15 +1,56 @@
-// Player movement
+// Render Player
+$("#player").each(function () {
+	var playerHead = document.createElement("div");
+	playerHead.classList.add("head");
+	this.appendChild(playerHead);
+	var playerNeck = document.createElement("div");
+	playerNeck.classList.add("neck");
+	this.appendChild(playerNeck);
+	var playerTorso = document.createElement("div");
+	playerTorso.classList.add("torso");
+	this.appendChild(playerTorso);
+	var playerArms = document.createElement("div");
+	playerArms.classList.add("arms");
+	this.appendChild(playerArms);
+	var playerArmL = document.createElement("div");
+	playerArmL.classList.add("left");
+	playerArmL.classList.add("arm");
+	playerArms.appendChild(playerArmL);
+	var playerArmR = document.createElement("div");
+	playerArmR.classList.add("right");
+	playerArmR.classList.add("arm");
+	playerArms.appendChild(playerArmR);
+	var playerLegs = document.createElement("div");
+	playerLegs.classList.add("legs");
+	this.appendChild(playerLegs);
+	var playerLegL = document.createElement("div");
+	playerLegL.classList.add("left");
+	playerLegL.classList.add("leg");
+	playerLegs.appendChild(playerLegL);
+	var playerLegR = document.createElement("div");
+	playerLegR.classList.add("right");
+	playerLegR.classList.add("leg");
+	playerLegs.appendChild(playerLegR);
+});
+
+// Declare variables
 var upPressed = false;
 var rightPressed = false;
 var downPressed = false;
 var leftPressed = false;
 var spacePressed = false;
-var player = document.getElementById("player");
+var scr_height = document.getElementById("floor").offsetHeight;
+var scr_width = document.getElementById("floor").offsetWidth;
+var px = 600;
+var py = 100;
+var playerHeight = document.getElementById("player").offsetHeight;
+var ph = document.getElementById("player").offsetHeight;
+var playerWidth = document.getElementById("player").offsetWidth;
+var pw = document.getElementById("player").offsetWidth;
+var playerSpeed = 15;
+var p_speed = 15;
 
-var score = 0;
-var totalZombies = 2; // Number of zombies on the level
-var playerSpeed = 6.5;
-
+// Check key presses
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
@@ -19,6 +60,7 @@ function keyDownHandler(e) {
 	}
 	if (e.code == 'ArrowLeft' || e.code == 'KeyA') {
 		leftPressed = true;
+		console.log("left key pressed");
 	}
 	if (e.code == 'ArrowUp' || e.code == 'KeyW') {
 		upPressed = true;
@@ -43,82 +85,77 @@ function keyUpHandler(e) {
 	}
 }
 
-
+// Player movement
 setInterval(function () {
-	if (gameActive == true) {
-		//console.group("Check");
+	if (leftPressed && px + (pw / 2) >= p_speed) px -= p_speed;
+	if (leftPressed && px < p_speed) px = 0 + (pw / 2);
 
-		var canMoveLeft = true;
-		var canMoveUp = true;
-		var canMoveDown = true;
-		var canMoveRight = true;
+	if (rightPressed && px - (pw / 2) <= scr_width - (pw / 2) - p_speed) px += p_speed; 
+	if (rightPressed && px - (pw / 2) > scr_width - p_speed) px = scr_width - (pw / 2);
 
-		$(".zombie.active").each(function () {
-			//console.log("ID: " + this.id);
-			//console.log(this.offsetLeft < player.offsetLeft + player.offsetWidth && this.offsetLeft + this.offsetWidth > player.offsetLeft && this.offsetTop < player.offsetTop + player.offsetHeight && this.offsetHeight + this.offsetTop > player.offsetTop);
-			if (this.offsetLeft < player.offsetLeft + player.offsetWidth && this.offsetLeft + this.offsetWidth > player.offsetLeft && this.offsetTop < player.offsetTop + player.offsetHeight && this.offsetHeight + this.offsetTop > player.offsetTop) {
-				//console.log("Touching");
-			}
-		});
+	if (upPressed && py + (ph / 2) >= p_speed) py -= p_speed;
+	if (upPressed && py < p_speed) py = 0 + (ph / 2);
 
-		try {
-			var map = document.getElementById("floor");
-			// Too High
-			if (map.offsetTop > player.offsetTop - (player.offsetHeight / 2)) {
-				document.getElementById("player").style.top = map.offsetTop + (player.offsetHeight / 2) + "px";
-				canMoveUp = false;
-			}
-			if (map.offsetTop == player.offsetTop) {
-				canMoveUp = false;
-			}
-			if (map.offsetTop + 1 == player.offsetTop - player.offsetHeight / 2) {
-				canMoveUp = false;
-				console.warn("Touching top of map");
-			}
+	if (downPressed && py + ph <= scr_height - p_speed) py += p_speed;
+	if (downPressed && py + ph > scr_height - p_speed) py = scr_height - (ph / 2);
 
-			// Too Low
-			if (map.offsetTop + map.offsetHeight < player.offsetTop + player.offsetHeight / 2) {
-				document.getElementById("player").style.top = map.offsetTop - player.offsetHeight / 2 + map.offsetHeight + "px";
-				canMoveDown = false;
-			}
-			if (map.offsetTop + map.offsetHeight + 1 == player.offsetTop + player.offsetHeight / 2) {
-				canMoveDown = false;
-			}
+	collisionDetection();
+}, 50);
 
-			// Too Far Left
-			if (map.offsetLeft > player.offsetLeft - player.offsetWidth / 2) {
-				document.getElementById("player").style.left = map.offsetLeft + player.offsetWidth / 2 + "px";
-				canMoveLeft = false;
-			}
-			if (map.offsetLeft + 1 == player.offsetLeft - player.offsetWidth / 2) {
-				canMoveLeft = false;
-			}
+ function move() {
+	player.style.left = px + "px";
+	player.style.top = py + "px";
+	player.style.width = pw + "px";
+	player.style.height = ph + "px";
+}	
 
-			// Too Far Right
-			if (map.offsetLeft + map.offsetWidth < player.offsetLeft + player.offsetWidth / 2) {
-				document.getElementById("player").style.left = map.offsetLeft - player.offsetWidth / 2 + map.offsetWidth + "px";
-				canMoveRight = false;
-			}
-			if (map.offsetLeft + map.offsetWidth - 1 == player.offsetLeft + player.offsetWidth / 2) {
-				canMoveRight = false;
-			}
-		} catch (err) {
-			console.error(err.message);
+function collisionDetection() {
+	$(".obstacle").each(function () {
+		var obx = $(this).offset().left;
+		var oby = $(this).offset().top;
+		var obh = $(this).offset().height;
+		var obw = $(this).offset().width;
+		console.log(obx);
+		console.log(px);
+		
+		if (px + pw > obx - 1 && px < obx + obw + 2 && py + ph > oby - 1 && py < oby + obh + 2) {
+		if (rightPressed && downPressed) {
+			if (Math.abs((obx - 1) - (px + pw)) < Math.abs((oby - 1) - (py + ph))) 
+				px = obx - pw - 1;
+			else 
+				py = oby - ph - 1;
 		}
+		else if (rightPressed && upPressed)
+		{
+			if (Math.abs((oby + obh + 2) - py) > Math.abs((obx - 1) - (px + pw)))
+				px = obx - pw - 1;
+			else
+				py = oby + obh + 2;
+		}
+		else if (leftPressed && downPressed)
+		{
+			if (Math.abs((obx + obw + 2) - px) < Math.abs((oby - 1) - (py + ph)))
+				px = obx + obw + 2;
+			else
+				py = oby - ph - 1;
+		}
+		else if (leftPressed && upPressed)
+		{
+			if (Math.abs((obx + obw + 2) - px) < Math.abs((oby + obh + 2) - py))
+				px = obx + obw + 2;
+			else
+				py = oby + obh + 2;
+		}
+		else if (rightPressed) 
+			px = obx - pw - 1;
+		else if (leftPressed) 
+			px = obx + obw + 2;
+		else if (downPressed) 
+			py = oby - ph - 1;
+		else if (upPressed) 
+			py = oby + obh + 2;
+	}
 
-		if (leftPressed && gameActive && canMoveLeft) {
-			player.style.left = player.offsetLeft - playerSpeed + "px"
-		}
-		if (rightPressed && gameActive && canMoveRight) {
-			player.style.left = player.offsetLeft + playerSpeed + "px"
-		}
-		if (upPressed && gameActive && canMoveUp) {
-			player.style.top = player.offsetTop - playerSpeed + "px"
-		}
-		if (downPressed && gameActive && canMoveDown) {
-			player.style.top = player.offsetTop + playerSpeed + "px"
-		}
-		//console.groupEnd();
-	} // Only run if gameActive
-}, 10)
-
+	move();
+	});
+}

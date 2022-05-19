@@ -3,7 +3,7 @@
   top: 8.2vh;
 }
 
-#F5Bookshelf1 {
+#L1Bookshelf1 {
     top: 8.5vh;
     position: absolute;
     height: 75vh;
@@ -73,6 +73,8 @@
 }
 
 .staircase {
+    position: absolute;
+    top: 8vh;
 }
 
 .staircase .stair {

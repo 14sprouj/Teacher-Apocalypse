@@ -35,7 +35,7 @@ $("zombie").each(function () { // Every time zombie is seen in html file, the co
 
 function getHypotenuse(zombieX, zombieY, playerX, playerY) {
 	var hypotenuse = Math.sqrt((zombieX - playerX) * (zombieX - playerX) + (zombieY - playerY) * (zombieY - playerY));
-	console.log("Distance: " + hypotenuse + "px");
+	//console.log("Distance: " + hypotenuse + "px");
 	return hypotenuse;
 }
 
@@ -53,11 +53,11 @@ setInterval(function () {
 			var zombieCentX = this.offsetLeft + (this.offsetWidth / 2);
 			var zombieCentY = this.offsetTop + (this.offsetHeight / 2);
 
-			var zombieBlocked = false;
+				var zombieBlocked = false;
 
 			var hypotenuse = Math.sqrt((zombieCentX - playerCentX) * (zombieCentX - playerCentX) + (zombieCentY - playerCentY) * (zombieCentY - playerCentY));
 			console.log("Distance: " + hypotenuse + "px");
-
+			
 			var angle = Math.asin((zombieCentY - playerCentY) / hypotenuse);
 			if (playerCentX < zombieCentX && playerCentY < zombieCentY) {
 				angle = Math.PI - angle;
@@ -66,7 +66,7 @@ setInterval(function () {
 				angle = -Math.PI - angle;
 			}
 			var direction = -angle / Math.PI;
-
+			
 			console.log("Direction: " + (direction * (180 / Math.PI)) + "&deg;");
 			var speed = parseInt($(this).attr("speed"));
 			console.log("Speed: " + speed);
@@ -79,5 +79,5 @@ setInterval(function () {
 			}
 			console.groupEnd();
 		})
-	}
+	};
 }, 50)

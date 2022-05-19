@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<title>Teacher Apocalypse</title>
 	<script src="https://kit.fontawesome.com/f57ba50558.js" crossorigin="anonymous"></script>
 
@@ -91,6 +91,14 @@
 								Tape
 							</div>
 						</div>
+						<div class="inventoryItem">
+							<div class="inventoryItemIcon">
+								<img src="media/rolling-pin.svg" alt="pin" class="uncollected">
+							</div>
+							<div class="inventoryItemName">
+								Rolling pin
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -101,89 +109,25 @@
 			<p id="playerHealthNumber">100%</p>
 		</div>
 		<!-- For Testing Purposes -->
-		<a href="floor4.html" id="btnNextLevel">Next Level</a>
+		<a href="floor2.html" id="btnPreviousLevel">Previous Level</a>
+		<a href="ground.html" id="btnNextLevel">Next Level</a>
 
 		<div id="floor" class="level-map walled-room active">
-			<zombie id="ZombieF5Z1" class="zombie" health="5" attack="5" killpoints="10" speed="5.9"></zombie>
-			<zombie id="ZombieF5Z2" class="zombie" health="5" attack="5" killpoints="10" speed="5.3"></zombie>
-			<div id="FloorFiveDoor" class="door"></div>
-			<div id="WallF5W1" class="wall"></div>
-			<div id="F5Bookshelf1" class="bookshelf" shelves="3">
-				<div class="shelf">
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
+			<zombie id="ZombieL2Z1" class="zombie" health=5 speed="5" attack="7" killpoints="15"></zombie>
+			<room>
+				<div class="table left">
+					<bunsen></bunsen>
 				</div>
-
-				<div class="shelf">
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
-					<div class="book right colour"></div>
+			</room>
+			<room>
+				<div class="table">
+					<computer></computer>
+					<computer></computer>
+					<computer></computer>
+					<computer></computer>
 				</div>
-				<div class="shelf">
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-					<div class="book left colour"></div>
-				</div>
-			</div>
-			<div id="StaircaseF54" class="staircase" staircount="6"></div>
-		</div> <!-- End of Floor Five Map -->
+			</room>
+		</div><!-- End of Floor Four Map -->
 	</div> <!-- End GameInterface -->
 
 	<script src="js/dev.js"></script>
@@ -196,6 +140,8 @@
 	<script src="js/player.js"></script>
 	<script src="js/damage.js"></script>
 	<script>
+		$("#loadScreen").fadeOut(1000);
+		$("#startScreen").css("display", "flex");
 		gameActive = true;
 	</script>
 </body>
