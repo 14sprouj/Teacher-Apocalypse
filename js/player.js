@@ -96,7 +96,7 @@ setInterval(function () {
 	if (upPressed && py + (ph / 2) >= p_speed) py -= p_speed;
 	if (upPressed && py < p_speed) py = 0 + (ph / 2);
 
-	if (downPressed && py - (ph / 2) + ph <= scr_height - p_speed) py += p_speed;
+	if (downPressed && py + ph <= scr_height - p_speed) py += p_speed;
 	if (downPressed && py + ph > scr_height - p_speed) py = scr_height - (ph / 2);
 
 	collisionDetection();
@@ -110,11 +110,13 @@ setInterval(function () {
 }	
 
 function collisionDetection() {
-	$(".obsticle").each(function () {
-		var obx = $(this).offsetLeft;
-		var oby = $(this).offsetTop;
-		var obh = $(this).offsetHeight;
-		var obw = $(this).offsetWidth;
+	$(".obstacle").each(function () {
+		var obx = $(this).offset().left;
+		var oby = $(this).offset().top;
+		var obh = $(this).offset().height;
+		var obw = $(this).offset().width;
+		console.log(obx);
+		console.log(px);
 		
 		if (px + pw > obx - 1 && px < obx + obw + 2 && py + ph > oby - 1 && py < oby + obh + 2) {
 		if (rightPressed && downPressed) {

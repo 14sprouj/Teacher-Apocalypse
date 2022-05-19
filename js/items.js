@@ -56,7 +56,7 @@ $(".bookshelf").each(function () {
 	console.log(shelfHeight);
 	console.log("#" + bookshelfID + " .shelf");
 	$("#" + bookshelfID + " .shelf").css("height", "calc(" + shelfHeight + "% - 20px - 0.6vh)");
-	$(this).addClass("obsticle");
+	$(this).addClass("obstacle");
 });
 
 // Books
