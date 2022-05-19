@@ -39,14 +39,14 @@ var rightPressed = false;
 var downPressed = false;
 var leftPressed = false;
 var spacePressed = false;
-var scr_height = document.getElementById("floor").offsetHeight;
-var scr_width = document.getElementById("floor").offsetWidth;
+var scr_height = 1000;
+var scr_width = 750;
 var px = 600;
 var py = 100;
-var playerHeight = document.getElementById("player").offsetHeight;
-var ph = document.getElementById("player").offsetHeight;
-var playerWidth = document.getElementById("player").offsetWidth;
-var pw = document.getElementById("player").offsetWidth;
+var playerHeight = 37;
+var ph = 37;
+var playerWidth = 37;
+var pw = 37;
 var playerSpeed = 15;
 var p_speed = 15;
 
@@ -111,10 +111,12 @@ setInterval(function () {
 
 function collisionDetection() {
 	$(".obstacle").each(function () {
-		var obx = $(this).offset().left;
-		var oby = $(this).offset().top;
-		var obh = $(this).offset().height;
-		var obw = $(this).offset().width;
+		var obh = Math.round(document.getElementById("floor").offsetTop + $(this).outerHeight());
+		var obw = Math.round(document.getElementById("floor").offsetLeft + $(this).outerWidth());
+		var obx = (scr_width - obw) / 2;
+		var oby = (scr_height - obh) / 2;
+
+		console.log("obw: ", obw);
 		console.log(obx);
 		console.log(px);
 		
