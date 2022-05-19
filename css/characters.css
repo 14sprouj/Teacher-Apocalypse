@@ -1,3 +1,5 @@
+/* Where the characters are created and how they will appear in the game*/
+
 #player {
     display: flex;
     align-items: center;
