@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -117,7 +117,7 @@
 			<div id="FloorFiveDoor" class="door"></div>
 			<div id="WallL1W1" class="wall"></div>
 			<div class="obstacle"
-				style="position:absolute; top: 50vh; left:60vh; width: 10vh; height: 10vh; background: orange;"></div>
+				 style="position:absolute; top: 50vh; left:60vh; width: 10vh; height: 10vh; background: orange;"></div>
 			<div id="L1Bookshelf1" class="bookshelf obstacle" shelves="3">
 				<div class="shelf">
 					<div class="book right colour"></div>
@@ -196,6 +196,13 @@
 		</div> <!-- End of Floor Five Map -->
 	</div> <!-- End GameInterface -->
 
+
+	<script type="text/javascript" src="data.js"></script>
+	<script>
+		var floor = "floor2";
+		var mydata = JSON.parse(data);
+		console.log(data.zombies[0].id);
+	</script>
 	<script src="js/script.js"></script>
 	<script>
 		gameActive = true;

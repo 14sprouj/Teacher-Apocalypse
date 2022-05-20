@@ -14,6 +14,8 @@ var playerSpeed = 15;
 var p_speed = 15;
 var obstacleCoOrds;
 
+
+
 // LOAD ENTITIES
 // Load Player
 $("#player").each(function () {
@@ -93,4 +95,6 @@ function move() {
 	player.obj.style.top = player.y + "px";
 	player.obj.style.width = player.w + "px";
 	player.obj.style.height = player.h + "px";
-}	
+}
+
+// Load Zombies

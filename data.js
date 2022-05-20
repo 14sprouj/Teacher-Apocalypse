@@ -1,0 +1,1 @@
+var data = '[ { "floor2": { "zombies": [ { "Zombie1": { "id": "ZombieL1Z1", "health": 5, "attack": 5, "killpoints": 10 } }, { "Zombie2": { "id": "ZombieL1Z2", "health": 5, "attack": 5, "killpoints": 10 } } ] } } ]';

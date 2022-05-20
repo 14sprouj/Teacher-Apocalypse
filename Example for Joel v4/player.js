@@ -150,7 +150,7 @@ function createPlayer() {
 	player.obj.style.left = player.x + "px";
 	player.obj.style.top = player.y + "px";
 	player.obj.style.width = player.w + "px";
-	player.obj.style.width = player.h + "px";
+	player.obj.style.height = player.h + "px";
 	document.body.appendChild(player.obj);
 }
 
