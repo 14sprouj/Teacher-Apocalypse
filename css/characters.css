@@ -15,7 +15,7 @@
 }
 
 #player .head {
-    height: 1.1vh;
+    /*height: 1.1vh;*/
     width: 1.1vh;
     background: gray;
     border-radius: 4px 4px 0 0;

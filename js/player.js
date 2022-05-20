@@ -2,6 +2,7 @@
 $("#player").each(function () {
 	var playerHead = document.createElement("div");
 	playerHead.classList.add("head");
+	playerHead.style.height = "1.1vh";
 	this.appendChild(playerHead);
 	var playerNeck = document.createElement("div");
 	playerNeck.classList.add("neck");
