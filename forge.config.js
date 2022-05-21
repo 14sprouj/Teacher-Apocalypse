@@ -2,40 +2,40 @@
 module.exports = {
 	makers: [
 		{
-			name: '@electron-forge/maker-zip',
-			config: {
-				// Config here
-			}
-		},
+            name: '@electron-forge/maker-zip',
+            platforms: ['darwin', 'linux']
+        },
 		{
 			name: '@electron-forge/maker-dmg',
 			config: {
-				background: './assets/dmg-background.png',
+				//background: './assets/dmg-background.png',
 				format: 'ULFO'
 			}
 		},
 		{
 			name: '@electron-forge/maker-pkg',
 			config: {
-				keychain: 'my-secret-ci-keychain'
+				//keychain: 'my-secret-ci-keychain'
 			}
 		},
 		{
 			"name": "@electron-forge/maker-squirrel",
 			"config": {
-				"certificateFile": "./cert.pfx",
-				"certificatePassword": "this-is-a-secret"
+				//"certificateFile": "./cert.pfx",
+				//"certificatePassword": "this-is-a-secret"
 			}
 		},
 		{
 			name: '@electron-forge/maker-deb',
 			config: {
 				options: {
-					maintainer: 'Joe Bloggs',
-					homepage: 'https://example.com'
+					maintainer: 'Joel Sprouse'
+					//homepage: 'https://example.com'
 				}
 			}
 		},
+	],
+	 publishers: [
 		{
 			name: '@electron-forge/publisher-github',
 			config: {

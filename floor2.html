@@ -11,6 +11,17 @@
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/dev.css" />
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/startScreen.css">
+	<link rel="stylesheet" href="css/characters.css">
+	<link rel="stylesheet" href="css/items.css">
+	<link rel="stylesheet" href="css/walls.css">
+	<link rel="stylesheet" href="css/doors.css">
+	<link rel="stylesheet" href="css/gameInterface.css">
+	<link rel="stylesheet" href="css/inventory.css">
+
 	<!-- Analytics -->
 
 	<!--<meta http-equiv="refresh" content="15">-->
@@ -197,12 +208,9 @@
 	</div> <!-- End GameInterface -->
 
 
-	<script type="text/javascript" src="data.js"></script>
-	<script>
-		var floor = "floor2";
-		var mydata = JSON.parse(data);
-		console.log(data.zombies[0].id);
-	</script>
+	<!--<script type="text/javascript" src="data.js"></script>-->
+	<script type="text/javascript" src="data.json"></script>
+
 	<script src="js/script.js"></script>
 	<script>
 		gameActive = true;

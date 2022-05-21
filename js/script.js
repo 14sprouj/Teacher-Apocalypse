@@ -6,13 +6,12 @@ var leftPressed = false;
 var spacePressed = false;
 var scr_height = 1000;
 var scr_width = 750;
-var playerX = 600;
-var playerY = 100;
+var playerX = document.getElementById("player").offsetLeft;
+var playerY = document.getElementById("player").offsetTop;
 var playerH = document.getElementById("player").offsetHeight;
 var playerW = document.getElementById("player").offsetWidth;
-var playerSpeed = 15;
 var p_speed = 15;
-var obstacleCoOrds;
+
 
 
 
@@ -22,6 +21,9 @@ $("#player").each(function () {
 	var playerHead = document.createElement("div");
 	playerHead.classList.add("head");
 	playerHead.style.height = "1.1vh";
+	playerHead.style.width = "1.1vh";
+    playerHead.style.background = "gray";
+    playerHead.style.borderRadius = "4px 4px 0 0";
 	this.appendChild(playerHead);
 	var playerNeck = document.createElement("div");
 	playerNeck.classList.add("neck");
@@ -98,3 +100,29 @@ function move() {
 }
 
 // Load Zombies
+// retreive json from local file
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'data.json', true);
+xhr.onload = function() {
+	if (this.status == 200) {
+		var data = JSON.parse(this.responseText);
+		var zombies = data.floors[0].floor2[0].zombies;
+		console.log(zombies);
+		for (var i = 0; i < zombies.length; i++) {
+			var zombie = zombies[i];
+			var zombieObj = document.createElement("div");
+			zombieObj.id = zombie.id;
+			zombieObj.classList.add("zombie");
+			zombieObj.style.left = zombie.x + "px";
+			zombieObj.style.top = zombie.y + "px";
+			zombieObj.style.width = zombie.w + "px";
+			zombieObj.style.height = zombie.h + "px";
+			zombieObj.style.background = zombie.color;
+			zombieObj.style.borderRadius = "4px";
+			zombieObj.style.position = "absolute";
+			zombieObj.style.zIndex = "1";
+			document.body.appendChild(zombieObj);
+		}
+	}
+}
+xhr.send();

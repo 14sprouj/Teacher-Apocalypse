@@ -1,6 +1,6 @@
 {
 	"name": "teacher-apocalypse",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "A game",
 	"main": "main.js",
 	"scripts": {
@@ -21,26 +21,18 @@
 	"author": "Joel Sprouse & Spencer Woods",
 	"license": "CC0-1.0",
 	"dependencies": {
-		"analytics-node": "^6.0.0",
-		"ejs": "^3.1.7",
+		"analytics-node": "6.0.0",
+		"ejs": "3.1.7",
 		"electron": "18.2.4",
-		"electron-squirrel-startup": "^1.0.0",
-		"node-sass": "^7.0.1",
-		"sass": "^1.10.0"
+		"electron-squirrel-startup": "1.0.0",
+		"node-sass": "7.0.1",
+		"sass": "1.10.0"
 	},
 	"devDependencies": {
-		"@electron-forge/cli": "^6.0.0-beta.63",
-		"@electron-forge/maker-deb": "^6.0.0-beta.63",
-		"@electron-forge/maker-rpm": "^6.0.0-beta.63",
-		"@electron-forge/maker-squirrel": "^6.0.0-beta.63",
-		"@electron-forge/maker-zip": "^6.0.0-beta.63",
-		"@electron-forge/publisher-github": "^6.0.0-beta.63",
-		"@electron-forge/maker-dmg": "6.0.0-beta.63",
-		"@electron-forge/maker-pkg": "6.0.0-beta.63",
 		"electron": "18.2.4",
-		"electron-packager": "^15.4.0",
-		"mermaid": "^9.0.0",
-		"update-electron-app": "^2.0.1"
+		"electron-packager": "15.4.0",
+		"mermaid": "9.0.0",
+		"update-electron-app": "2.0.1"
 	},
 	"config": {
 		"forge": "./forge.config.js"

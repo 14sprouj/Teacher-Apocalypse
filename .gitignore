@@ -3,6 +3,7 @@
 from figma/
 *.tmp
 *.TMP
+._*
 
 # Logs
 logs
