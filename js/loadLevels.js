@@ -1,1 +1,0 @@
-$(".level-map zombie").addClass("active");
