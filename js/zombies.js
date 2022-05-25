@@ -15,7 +15,7 @@ $("zombie").each(function () { // Every time zombie is seen in html file, the co
 	this.appendChild(zombieNeck);
 	var zombieTorso = document.createElement("div");
 	zombieTorso.classList.add("torso");
-	zmbieTorso.stle.background = "#212527";
+	zombieTorso.style.background = "#212527";
 	zombieTorso.style.height = "1.5vh";
 	zombieTorso.style.width = "1.5vh";
 	this.appendChild(zombieTorso);
@@ -36,7 +36,7 @@ $("zombie").each(function () { // Every time zombie is seen in html file, the co
 	zombieArmR.classList.add("right");
 	zombieArmR.classList.add("arm");
 	zombieArmR.style.background = "#068713";
-	zombieArm.style.left = "1.65vh";
+	zombieArmR.style.left = "1.65vh";
 	zombieArmR.style.transform = "rotate(345deg)";
 	zombieArms.appendChild(zombieArmR);
 	var zombieLegs = document.createElement("div");
@@ -56,7 +56,7 @@ $("zombie").each(function () { // Every time zombie is seen in html file, the co
 	zombieLegR.classList.add("right");
 	zombieLegR.classList.add("leg");
 	zombieLegR.style.background = "#068713";
-	zombieLegL.style.left = "0.35vh";
+	zombieLegR.style.left = "0.35vh";
 	zombieLegs.appendChild(zombieLegR);
 });
 
