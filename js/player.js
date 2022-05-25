@@ -87,29 +87,31 @@ function keyUpHandler(e) {
 
 // Player movement
 setInterval(function () {
-	if (leftPressed && px + (pw / 2) >= p_speed) px -= p_speed;
-	if (leftPressed && px < p_speed) px = 0 + (pw / 2);
+	if (leftPressed && playerX + (playerW / 2) >= p_speed) playerX -= p_speed;
+	if (leftPressed && playerX < p_speed) playerX = 0 + (playerW / 2);
 
-	if (rightPressed && px - (pw / 2) <= scr_width - (pw / 2) - p_speed) px += p_speed; 
-	if (rightPressed && px - (pw / 2) > scr_width - p_speed) px = scr_width - (pw / 2);
+	if (rightPressed && playerX - (playerW / 2) <= scr_width - (playerW / 2) - p_speed) playerX += p_speed; 
+	if (rightPressed && playerX - (playerW / 2) > scr_width - p_speed) playerX = scr_width - (playerW / 2);
 
-	if (upPressed && py + (ph / 2) >= p_speed) py -= p_speed;
-	if (upPressed && py < p_speed) py = 0 + (ph / 2);
+	if (upPressed && playerY + (playerH / 2) >= p_speed) playerY -= p_speed;
+	if (upPressed && playerY < p_speed) playerY = 0 + (playerH / 2);
 
-	if (downPressed && py + ph <= scr_height - p_speed) py += p_speed;
-	if (downPressed && py + ph > scr_height - p_speed) py = scr_height - (ph / 2);
+	if (downPressed && playerY + (playerH / 2) <= scr_height - p_speed) playerY += p_speed;
+	if (downPressed && playerY + playerH > scr_height - p_speed) playerY = scr_height - (playerH / 2);
 
 	collisionDetection();
 }, 50);
 
 function move() {
-	document.getElementById("playerX").innerHTML = px;
-	document.getElementById("playerY").innerHTML = py;
+	document.getElementById("playerX").innerHTML = playerX;
+	document.getElementById("playerY").innerHTML = playerY;
+	document.getElementById("playerH").innerHTML = playerH;
+	document.getElementById("playerW").innerHTML = playerW;
 	document.getElementById("objects").innerHTML = obstacleCoOrds;
-	player.style.left = px + "px";
-	player.style.top = py + "px";
-	player.style.width = pw + "px";
-	player.style.height = ph + "px";
+	player.style.left = playerX + "px";
+	player.style.top = playerY + "px";
+	player.style.width = playerW + "px";
+	player.style.height = playerH + "px";
 }	
 
 function collisionDetection() {
@@ -127,42 +129,42 @@ function collisionDetection() {
 
 		
 		
-		if (px + pw > obx - 1 && px < obx + obw + 2 && py + ph > oby - 1 && py < oby + obh + 2) {
+		if (playerX + playerW > obx - 1 && playerX < obx + obw + 2 && playerY + playerH > oby - 1 && playerY < oby + obh + 2) {
 		if (rightPressed && downPressed) {
-			if (Math.abs((obx - 1) - (px + pw)) < Math.abs((oby - 1) - (py + ph))) 
-				px = obx - pw - 1;
+			if (Math.abs((obx - 1) - (playerX + playerW)) < Math.abs((oby - 1) - (playerY + playerH))) 
+				playerX = obx - playerW - 1;
 			else 
-				py = oby - ph - 1;
+				playerY = oby - playerH - 1;
 		}
 		else if (rightPressed && upPressed)
 		{
-			if (Math.abs((oby + obh + 2) - py) > Math.abs((obx - 1) - (px + pw)))
-				px = obx - pw - 1;
+			if (Math.abs((oby + obh + 2) - playerY) > Math.abs((obx - 1) - (playerX + playerW)))
+				playerX = obx - playerW - 1;
 			else
-				py = oby + obh + 2;
+				playerY = oby + obh + 2;
 		}
 		else if (leftPressed && downPressed)
 		{
-			if (Math.abs((obx + obw + 2) - px) < Math.abs((oby - 1) - (py + ph)))
-				px = obx + obw + 2;
+			if (Math.abs((obx + obw + 2) - playerX) < Math.abs((oby - 1) - (playerY + playerH)))
+				playerX = obx + obw + 2;
 			else
-				py = oby - ph - 1;
+				playerY = oby - playerH - 1;
 		}
 		else if (leftPressed && upPressed)
 		{
-			if (Math.abs((obx + obw + 2) - px) < Math.abs((oby + obh + 2) - py))
-				px = obx + obw + 2;
+			if (Math.abs((obx + obw + 2) - playerX) < Math.abs((oby + obh + 2) - playerY))
+				playerX = obx + obw + 2;
 			else
-				py = oby + obh + 2;
+				playerY = oby + obh + 2;
 		}
 		else if (rightPressed) 
-			px = obx - pw - 1;
+			playerX = obx - playerW - 1;
 		else if (leftPressed) 
-			px = obx + obw + 2;
+			playerX = obx + obw + 2;
 		else if (downPressed) 
-			py = oby - ph - 1;
+			playerY = oby - playerH - 1;
 		else if (upPressed) 
-			py = oby + obh + 2;
+			playerY = oby + obh + 2;
 	}
 
 		move();
