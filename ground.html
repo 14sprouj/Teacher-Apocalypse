@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Teacher Apocalypse</title>
+	<script src="https://kit.fontawesome.com/f57ba50558.js" crossorigin="anonymous"></script>
+
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Analytics -->
+
+
+	<link rel="stylesheet" href="css/dev.css" />
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/startScreen.css">
+	<link rel="stylesheet" href="css/characters.css">
+	<link rel="stylesheet" href="css/items.css">
+	<link rel="stylesheet" href="css/walls.css">
+	<link rel="stylesheet" href="css/doors.css">
+	<link rel="stylesheet" href="css/gameInterface.css">
+	<link rel="stylesheet" href="css/inventory.css">
+	<!--<meta http-equiv="refresh" content="15">-->
+	<script>
+		var gameActive = false;
+	</script>
+
+</head>
+
+<body>
+	<div id="pauseMenu">
+		<h1>Game Paused</h1>
+		<button id="btnResume">Resume</button>
+		<button class="btnQuitWindow">Quit</button>
+	</div>
+	<div id="outerGameInterface">
+		<div id="player"></div>
+		<div id="btnPause" class="btnGameInterface">
+			<img src="media/pause.svg" alt="Pause">
+		</div>
+		<div id="inventory">
+			<div id="inventoryButton" class="btnGameInterface">
+				<img src="media/box-open.svg" alt="Inventory">
+			</div>
+			<div id="inventoryDisplay">
+				<div id="inventoryDisplayHeader">
+					Inventory
+				</div>
+				<div id="inventoryDisplayContent">
+					<div id="inventoryDisplayContentItems">
+						<div class="inventoryItem">
+							<div class="inventoryItemIcon">
+								<img src="media/wire.svg" alt="Wire" class="uncollected">
+							</div>
+							<div class="inventoryItemName">
+								Wire
+							</div>
+						</div>
+						<div class="inventoryItem">
+							<div class="inventoryItemIcon">
+								<img src="media/fire-extinguisher.svg" alt="fire" class="uncollected">
+							</div>
+							<div class="inventoryItemName">
+								Fire extinguisher
+							</div>
+						</div>
+						<div class="inventoryItem">
+							<div class="inventoryItemIcon">
+								<img src="media/hairspray.svg" alt="hairspray" class="uncollected">
+							</div>
+							<div class="inventoryItemName">
+								Hairspray
+							</div>
+						</div>
+						<div class="inventoryItem">
+							<div class="inventoryItemIcon">
+								<img src="media/lighter.svg" alt="lighter" class="uncollected">
+							</div>
+							<div class="inventoryItemName">
+								Lighter
+							</div>
+						</div>
+						<div class="inventoryItem">
+							<div class="inventoryItemIcon">
+								<img src="media/tape.svg" alt="tape" class="uncollected">
+							</div>
+							<div class="inventoryItemName">
+								Tape
+							</div>
+						</div>
+						<div class="inventoryItem">
+							<div class="inventoryItemIcon">
+								<img src="media/rolling-pin.svg" alt="pin" class="uncollected">
+							</div>
+							<div class="inventoryItemName">
+								Rolling pin
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<i id="playerHealthBarHeart" class="fa-solid fa-heart"></i>
+		<div id="playerHealthBar">
+			<div id="playerHealthBarFill"></div>
+			<p id="playerHealthNumber">100%</p>
+		</div>
+		<!-- For Testing Purposes -->
+		<a href="floor1.html" id="btnPreviousLevel">Previous Level</a>
+
+
+		<div id="floor" class="level-map walled-room active">
+			<zombie id="ZombieL2Z1" class="zombie" health=5 speed="5" attack="7" killpoints="15"></zombie>
+			<room>
+				<div class="table left">
+					<computer></computer>
+					<computer></computer>
+					<computer></computer>
+					<computer></computer>
+					<computer></computer>
+					<computer></computer>
+					<computer></computer>
+				</div>
+			</room>
+			<room>
+				<div class="table">
+					<computer></computer>
+					<computer></computer>
+					<computer></computer>
+					<computer></computer>
+				</div>
+			</room>
+		</div><!-- End of Floor Four Map -->
+	</div> <!-- End GameInterface -->
+
+	<script src="js/dev.js"></script>
+	<script src="js/fullscreen.js"></script>
+	<script src="js/pauseGame.js"></script>
+	<script src="js/inventory.js"></script>
+	<script src="js/loadLevels.js"></script>
+	<script src="js/zombies.js"></script>
+	<script src="js/items.js"></script>
+	<script src="js/player.js"></script>
+	<script src="js/damage.js"></script>
+	<script>
+		$("#loadScreen").fadeOut(1000);
+		$("#startScreen").css("display", "flex");
+		gameActive = true;
+	</script>
+</body>
+
+</html>

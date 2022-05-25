@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,7 +25,7 @@
 	<link rel="stylesheet" href="css/inventory.css">
 	<!--<meta http-equiv="refresh" content="15">-->
 	<script>
-		var gameActive = true;
+		var gameActive = false;
 	</script>
 
 </head>
@@ -37,7 +37,6 @@
 		<button class="btnQuitWindow">Quit</button>
 	</div>
 	<div id="outerGameInterface">
-		<div id="player"></div>
 		<div id="btnPause" class="btnGameInterface">
 			<img src="media/pause.svg" alt="Pause">
 		</div>
@@ -91,6 +90,14 @@
 								Tape
 							</div>
 						</div>
+						<div class="inventoryItem">
+							<div class="inventoryItemIcon">
+								<img src="media/rolling-pin.svg" alt="pin" class="uncollected">
+							</div>
+							<div class="inventoryItemName">
+								Rolling pin
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -101,14 +108,26 @@
 			<p id="playerHealthNumber">100%</p>
 		</div>
 		<!-- For Testing Purposes -->
-		<a href="floor4.html" id="btnNextLevel">Next Level</a>
+		<a href="floor1.html" id="btnNextLevel">Next Level</a>
+		<div id="info" style="position:absolute; top: 50pt;">
+			Player:
+			<span id="playerX"></span>,
+			<span id="playerY"></span>
+			<br /><br />
+			<b>Objects</b>
+			<br />
+			<div id="objects"></div>
 
-		<div id="FloorFive" class="level-map walled-room active">
-			<zombie id="ZombieF5Z1" class="zombie" health="5" attack="5" killpoints="10" speed="5.9"></zombie>
-			<zombie id="ZombieF5Z2" class="zombie" health="5" attack="5" killpoints="10" speed="5.3"></zombie>
+		</div>
+
+		<div id="floor" class="level-map walled-room active">
+			<div id="player"></div>
+			<zombie id="ZombieL1Z1" class="zombie" health="5" attack="5" killpoints="10" speed="5.9"></zombie>
+			<zombie id="ZombieL1Z2" class="zombie" health="5" attack="5" killpoints="10" speed="5.3"></zombie>
 			<div id="FloorFiveDoor" class="door"></div>
-			<div id="WallF5W1" class="wall"></div>
-			<div id="F5Bookshelf1" class="bookshelf" shelves="3">
+			<div id="WallL1W1" class="wall"></div>
+			<div class="obstacle" style="position:absolute; top: 50vh; left:60vh; width: 10vh; height: 10vh; background: orange;"></div>
+			<div id="L1Bookshelf1" class="bookshelf obstacle" shelves="3">
 				<div class="shelf">
 					<div class="book right colour"></div>
 					<div class="book right colour"></div>
@@ -182,10 +201,10 @@
 					<div class="book left colour"></div>
 				</div>
 			</div>
-			<div id="StaircaseF54" class="staircase" staircount="6"></div>
+			<div id="StaircaseL14" class="staircase" staircount="6"></div>
 		</div> <!-- End of Floor Five Map -->
 	</div> <!-- End GameInterface -->
-
+	<!--
 	<script src="js/dev.js"></script>
 	<script src="js/fullscreen.js"></script>
 	<script src="js/pauseGame.js"></script>
@@ -195,6 +214,11 @@
 	<script src="js/items.js"></script>
 	<script src="js/player.js"></script>
 	<script src="js/damage.js"></script>
+		-->
+	<script src="js/script.js"></script>
+	<script>
+		gameActive = true;
+	</script>
 </body>
 
 </html>

@@ -2,40 +2,67 @@
 $("zombie").each(function () { // Every time zombie is seen in html file, the code below will run
 	var zombieHead = document.createElement("div");
 	zombieHead.classList.add("head");
+	zombieHead.style.height = "1.1vh";
+	zombieHead.style.width = "1.1vh";
+	zombieHead.stle.backgtound = "green";
+	zombieHead.style.border - radius = "4 pX 4pX 0 0";
 	this.appendChild(zombieHead);
 	var zombieNeck = document.createElement("div");
 	zombieNeck.classList.add("neck");
+	zombieNeck.style.height = "0.1538461538vh";
+	zombieNeck.style.width = "0.6vh";
+	zombieNext.style.background = "green";
 	this.appendChild(zombieNeck);
 	var zombieTorso = document.createElement("div");
 	zombieTorso.classList.add("torso");
+	zmbieTorso.stle.background = "#212527";
+	zombieTorso.style.height = "1.5vh";
+	zombieTorso.style.width = "1.5vh";
 	this.appendChild(zombieTorso);
 	var zombieArms = document.createElement("div");
 	zombieArms.classList.add("arms");
+	zombieArms.style.position = "absolute";
+	zombieArms.style.top = "1.3vh";
+	zombieArms.style.left = "0.55vh";
 	this.appendChild(zombieArms);
 	var zombieArmL = document.createElement("div");
 	zombieArmL.classList.add("left");
 	zombieArmL.classList.add("arm");
+	zombieArmL.style.background = "#068713";
+	zombieArmL.style.left = "-0.25vh";
+	zombieArmL.style.transform = "rotate(10deg)";
 	zombieArms.appendChild(zombieArmL);
 	var zombieArmR = document.createElement("div");
 	zombieArmR.classList.add("right");
 	zombieArmR.classList.add("arm");
+	zombieArmR.style.background = "#068713";
+	zombieArm.style.left = "1.65vh";
+	zombieArmR.style.transform = "rotate(345deg)";
 	zombieArms.appendChild(zombieArmR);
 	var zombieLegs = document.createElement("div");
 	zombieLegs.classList.add("legs");
+	zombieLegs.style.position = "absolute";
+	zombieLegs.style.top = "2.7vh";
+	zombieLegs.style.left = "1.2vh";
+	zombieLegs.style.height = "1.45vh";
 	this.appendChild(zombieLegs);
 	var zombieLegL = document.createElement("div");
 	zombieLegL.classList.add("left");
 	zombieLegL.classList.add("leg");
+	zombieLegL.style.background = "#068713";
+	zombieLegL.style.left = "-0.5vh";
 	zombieLegs.appendChild(zombieLegL);
 	var zombieLegR = document.createElement("div");
 	zombieLegR.classList.add("right");
 	zombieLegR.classList.add("leg");
+	zombieLegR.style.background = "#068713";
+	zombieLegL.style.left = "0.35vh";
 	zombieLegs.appendChild(zombieLegR);
 });
 
 function getHypotenuse(zombieX, zombieY, playerX, playerY) {
 	var hypotenuse = Math.sqrt((zombieX - playerX) * (zombieX - playerX) + (zombieY - playerY) * (zombieY - playerY));
-	console.log("Distance: " + hypotenuse + "px");
+	//console.log("Distance: " + hypotenuse + "px");
 	return hypotenuse;
 }
 
@@ -45,37 +72,39 @@ function getAngle(zombieX, zombieY, playerX, playerY) {
 
 // Move Zombies
 setInterval(function () {
-	$("zombie.active").each(function () {
-		console.group("Zombie " + this.id + " and Player Distances");
-		var playerCentX = player.offsetLeft + (player.offsetWidth / 2);
-		var playerCentY = player.offsetTop + (player.offsetHeight / 2);
-		var zombieCentX = this.offsetLeft + (this.offsetWidth / 2);
-		var zombieCentY = this.offsetTop + (this.offsetHeight / 2);
+	if (gameActive) {
+		$("zombie.active").each(function () {
+			console.group("Zombie " + this.id + " and Player Distances");
+			var playerCentX = player.offsetLeft + (player.offsetWidth / 2);
+			var playerCentY = player.offsetTop + (player.offsetHeight / 2);
+			var zombieCentX = this.offsetLeft + (this.offsetWidth / 2);
+			var zombieCentY = this.offsetTop + (this.offsetHeight / 2);
 
-		var zombieBlocked = false;
+				var zombieBlocked = false;
 
-		var hypotenuse = Math.sqrt((zombieCentX - playerCentX) * (zombieCentX - playerCentX) + (zombieCentY - playerCentY) * (zombieCentY - playerCentY));
-		console.log("Distance: " + hypotenuse + "px");
-		
-		var angle = Math.asin((zombieCentY - playerCentY) / hypotenuse);
-		if (playerCentX < zombieCentX && playerCentY < zombieCentY) {
-			angle = Math.PI - angle;
-		}
-		if (playerCentX < zombieCentX && playerCentY >= zombieCentY) {
-			angle = -Math.PI - angle;
-		}
-		var direction = -angle / Math.PI;
-		
-		console.log("Direction: " + (direction * (180 / Math.PI)) + "&deg;");
-		var speed = parseInt($(this).attr("speed"));
-		console.log("Speed: " + speed);
-		speed = speed / 0.9;
-		this.style.left = this.offsetLeft + (speed * Math.cos(direction * Math.PI)) + "px";
-		this.style.top = this.offsetTop + (speed * Math.sin(direction * Math.PI)) + "px";
-		if (hypotenuse < 30) {
-			var health = $(this).attr("attack");
-			deductPlayerHealth(health);
-        }
-		console.groupEnd();
-    })
+			var hypotenuse = Math.sqrt((zombieCentX - playerCentX) * (zombieCentX - playerCentX) + (zombieCentY - playerCentY) * (zombieCentY - playerCentY));
+			console.log("Distance: " + hypotenuse + "px");
+			
+			var angle = Math.asin((zombieCentY - playerCentY) / hypotenuse);
+			if (playerCentX < zombieCentX && playerCentY < zombieCentY) {
+				angle = Math.PI - angle;
+			}
+			if (playerCentX < zombieCentX && playerCentY >= zombieCentY) {
+				angle = -Math.PI - angle;
+			}
+			var direction = -angle / Math.PI;
+			
+			console.log("Direction: " + (direction * (180 / Math.PI)) + "&deg;");
+			var speed = parseInt($(this).attr("speed"));
+			console.log("Speed: " + speed);
+			speed = speed / 0.9;
+			this.style.left = this.offsetLeft + (speed * Math.cos(direction * Math.PI)) + "px";
+			this.style.top = this.offsetTop + (speed * Math.sin(direction * Math.PI)) + "px";
+			if (hypotenuse < 30) {
+				var health = $(this).attr("attack");
+				deductPlayerHealth(health);
+			}
+			console.groupEnd();
+		})
+	};
 }, 50)

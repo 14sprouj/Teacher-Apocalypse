@@ -3,7 +3,7 @@
   top: 8.2vh;
 }
 
-#F5Bookshelf1 {
+#L1Bookshelf1 {
     top: 8.5vh;
     position: absolute;
     height: 75vh;
@@ -44,9 +44,9 @@
   border-color: #327727;
 }
 
-#FloorFive .shelf .book {
-  border-width: 1px;
-  width: 24px;
+.bookshelf .shelf .book {
+    border-width: 1px;
+    width: 24px;
 }
 
 .table.left {
@@ -73,12 +73,14 @@
 }
 
 .staircase {
+    position: absolute;
+    top: 8vh;
 }
 
 .staircase .stair {
     width: 1vh;
     height: 0.5vh;
     background-color: #59c2ef;
-    border-radius: rgb(16, 15, 15) solid 0.1vh;
+    border: rgb(16, 15, 15) solid 0.1vh;
     transform: rotate(90deg);
 }

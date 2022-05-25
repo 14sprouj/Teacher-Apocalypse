@@ -56,12 +56,12 @@ $(".bookshelf").each(function () {
 	console.log(shelfHeight);
 	console.log("#" + bookshelfID + " .shelf");
 	$("#" + bookshelfID + " .shelf").css("height", "calc(" + shelfHeight + "% - 20px - 0.6vh)");
-	$(this).addClass("obsticle");
+	$(this).addClass("obstacle");
 });
 
 // Books
 var BookID = 1;
-$("#FloorFive .shelf .book").each(function () {
+$(".bookshelf .shelf .book").each(function () {
 	//console.group("Floor Five: Book " + BookID);
 	$(this).attr("id", "book" + BookID);
 	// burgandy   = 2     2
