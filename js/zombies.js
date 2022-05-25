@@ -4,14 +4,14 @@ $("zombie").each(function () { // Every time zombie is seen in html file, the co
 	zombieHead.classList.add("head");
 	zombieHead.style.height = "1.1vh";
 	zombieHead.style.width = "1.1vh";
-	zombieHead.stle.backgtound = "green";
-	zombieHead.style.border - radius = "4 pX 4pX 0 0";
+	zombieHead.style.background = "green";
+	zombieHead.style.borderRadius = "4 pX 4pX 0 0";
 	this.appendChild(zombieHead);
 	var zombieNeck = document.createElement("div");
 	zombieNeck.classList.add("neck");
 	zombieNeck.style.height = "0.1538461538vh";
 	zombieNeck.style.width = "0.6vh";
-	zombieNext.style.background = "green";
+	zombieNeck.style.background = "green";
 	this.appendChild(zombieNeck);
 	var zombieTorso = document.createElement("div");
 	zombieTorso.classList.add("torso");
