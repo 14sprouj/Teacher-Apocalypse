@@ -7,11 +7,10 @@ var downpressed = false;
 const scr_width = 1000;
 const scr_height = 750;
 
+
 const defpw = 20;
 const defph = 20;
 
-const defobw = 40;
-const defobh = 40;
 
 var p_speed = 5;
 
@@ -111,11 +110,10 @@ function collisiondetection() {
 
 
 function setup() {
-	obcount = $("obstaclecount").value;
-	createPlayer();
-	createObstacle();
-	createZombie(50, 500, 60, 60);
-	/* 	player = document.getElementById('player'); */
+	//obcount = $("obstaclecount").value;
+	createPlayer(500, 500, 30, 30);
+	createObstacle(1, "table", 50, 50, 50, 500);
+	createZombie(50, 500, 45, 45);
 	info = document.getElementById('info');
 	/*	obstacle = document.getElementById('obstacle');
 		createObstacle();
@@ -125,7 +123,6 @@ function setup() {
 		obstacle.style.height = obh + "px";
 		move();
 	*/
-	$("setup").style.display = "none";
 	setInterval(timerHandler, 50);
 }
 
@@ -133,19 +130,15 @@ function $(id) {
 	return document.getElementById(id);
 }
 
-function sliderupdate() {
-	$("cnt").innerHTML = $("obstaclecount").value;
-}
-
-function createPlayer() {
+function createPlayer(x, y, w, h) {
 	player = {};
 	player.obj = document.createElement('div');
 	player.obj.id = "player";
 	player.obj.innerHTML = "&nbsp;";
 	player.w = defpw;
 	player.h = defph;
-	player.x = 50;
-	player.y = 500;
+	player.x = x;
+	player.y = y;
 	player.obj.style.left = player.x + "px";
 	player.obj.style.top = player.y + "px";
 	player.obj.style.width = player.w + "px";
@@ -153,23 +146,21 @@ function createPlayer() {
 	document.body.appendChild(player.obj);
 }
 
-function createObstacle() {
-	for (n = 0; n < obcount; n++) {
-		let o = {};
-		o.obj = document.createElement('DIV');
-		o.w = defobw;
-		o.h = defobh;
-		o.x = Math.random() * (scr_width - o.w);
-		o.y = Math.random() * (scr_height - o.h);
-		o.obj.classList.add("obstacle");
-		o.obj.style.left = o.x + "px";
-		o.obj.style.top = o.y + "px";
-		o.obj.style.width = o.w + "px";
-		o.obj.style.height = o.h + "px";
-		if (n % 2 == 0) o.obj.style.backgroundColor = "yellow";
-		obstacles[n] = o;
-		document.body.appendChild(o.obj);
-	}
+function createObstacle(n, object, x, y, w, h) {
+	let o = {};
+	o.obj = document.createElement('DIV');
+	o.w = w;
+	o.h = h;
+	o.x = x;
+	o.y = y;
+	o.obj.classList.add("obstacle");
+	o.obj.classList.add(object);
+	o.obj.style.left = o.x + "px";
+	o.obj.style.top = o.y + "px";
+	o.obj.style.width = o.w + "px";
+	o.obj.style.height = o.h + "px";
+	obstacles[n] = o;
+	document.body.appendChild(o.obj);
 }
 
 function createZombie(x, y, w, h) {
@@ -184,7 +175,7 @@ function createZombie(x, y, w, h) {
 	o.obj.style.top = o.y + "px";
 	o.obj.style.width = o.w + "px";
 	o.obj.style.height = o.h + "px";
-	obstacles[n] = o;
+	//obstacles[n] = o;
 	document.body.appendChild(o.obj);
 }
 
@@ -202,4 +193,4 @@ function timerHandler() {
 	collisiondetection();
 }
 
-//window.addEventListener('load', setup);
+window.addEventListener('load', setup);
