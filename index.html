@@ -1,129 +1,14 @@
-﻿<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-	<script>
-		var load = 0;
-		function loadMessageUpdate(message) {
-			load++;
-			document.getElementById("loadMessage").innerHTML = message;
-			// console.log("Load: " + load);
-		}
-
-		load++;
-	</script>
-
-	<title>Teacher Apocalypse</title>
-	<script src="https://kit.fontawesome.com/f57ba50558.js" crossorigin="anonymous"></script>
-
-	<!-- jQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-	<!-- Analytics -->
-
-
-
-
-	<script>
-		load++;
-	</script>
-	<link rel="stylesheet" href="css/dev.css" />
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/startScreen.css">
-	<link rel="stylesheet" href="css/characters.css">
-	<link rel="stylesheet" href="css/items.css">
-	<link rel="stylesheet" href="css/walls.css">
-	<link rel="stylesheet" href="css/doors.css">
-	<link rel="stylesheet" href="css/gameInterface.css">
-	<link rel="stylesheet" href="css/inventory.css">
-	<!--<meta http-equiv="refresh" content="15">-->
-	<script>
-		load++;
-		var gameActive = false;
-	</script>
-
+    <meta charset="utf-8">
+	<title>Example for Joel</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="player.js"></script>
 </head>
-
 <body>
-	<div id="loadScreen" class="level-map">
-		<h1>Teacher Apocalypse</h1>
-		<h2 id="loadMessage">Loading Meta Data</h2>
-	</div>
-	<script>
-		loadMessageUpdate("Loading Game Data");
-	</script>
-	<div id="startScreen" class="level-map">
-
-		<GameTitle>Teacher Apocalypse</GameTitle>
-
-		<div id="startScreenBtns">
-			<a href="floor2.html" id="btnStartGame" class="btnStartScreen">Start</a>
-			<a id="btnQuitWindow" class="btnStartScreen">Quit</a>
-		</div>
-		<div id="quitModal">
-			<div id="quitScreen">
-				<h1>Are you sure you want to quit?</h1>
-				<div id="quitScreenBtns">
-					<button class="btn btn-primary" id="btnQuitYes">Yes</button>
-					<button class="btn btn-primary" id="btnQuitNo">No</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-		<script>
-			$(document).ready(function () {
-				$('#levelDisplay').load(function () {
-					$('#levelDisplay')
-						.contents().find("body")
-						.html("iframe");
-					$('#levelDisplay')
-						.contents().find("head")
-						.append($('<link rel="stylesheet" type="text/css" href="css/characters.css">')
-						);
-				});
-			});
-		</script>
-
-	<script src="js/dev.js"></script>
-	<script>
-		loadMessageUpdate("Setting Up Fullscreen")
-	</script>
-	<script src="js/fullscreen.js"></script>
-	<script src="js/startScreen.js"></script>
-	<script src="js/pauseGame.js"></script>
-
-	<script src="js/inventory.js"></script>
-	<script>
-		loadMessageUpdate("Loading Levels")
-	</script>
-	<script src="js/loadLevels.js"></script>
-
-	<script>
-		loadMessageUpdate("<s>Giving</s> Removing the zombies' brains")
-	</script>
-	<script src="js/zombies.js"></script>
-	<script>
-		loadMessageUpdate("Putting books on bookshelves")
-	</script>
-	<script src="js/items.js"></script>
-	<script>
-		loadMessageUpdate("Giving the player a brain")
-	</script>
-	<script src="js/player.js"></script>
-	<script>
-		loadMessageUpdate("Loading Health Bar");
-	</script>
-	<script src="js/damage.js"></script>
-	<script>
-			loadMessageUpdate("Starting Game");
-			$("#loadScreen").fadeOut(1000);
-			$("#startScreen").css("display", "flex");
-	</script>
+   <div id="info"></div>
+   <div id="setup"><input id="obstaclecount" type="range" value="10" min="1" max="25" onchange="sliderupdate()"><span id="cnt">10</span>&nbsp;<button onclick="setup()">Start</button></div>
 </body>
 
 </html>

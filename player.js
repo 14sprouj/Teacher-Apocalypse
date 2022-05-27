@@ -1,10 +1,11 @@
+// JavaScript source code
 var rightpressed = false;
 var leftpressed = false;
 var uppressed = false;
 var downpressed = false;
 
-const scr_width = 750;
-const scr_height = 500;
+const scr_width = 1000;
+const scr_height = 750;
 
 const defpw = 20;
 const defph = 20;
@@ -110,8 +111,10 @@ function collisiondetection() {
 
 
 function setup() {
+	obcount = $("obstaclecount").value;
 	createPlayer();
 	createObstacle();
+	createZombie(50, 500, 60, 60);
 	/* 	player = document.getElementById('player'); */
 	info = document.getElementById('info');
 	/*	obstacle = document.getElementById('obstacle');
@@ -122,7 +125,7 @@ function setup() {
 		obstacle.style.height = obh + "px";
 		move();
 	*/
-	//$("setup").style.display = "none";
+	$("setup").style.display = "none";
 	setInterval(timerHandler, 50);
 }
 
@@ -138,100 +141,55 @@ function createPlayer() {
 	player = {};
 	player.obj = document.createElement('div');
 	player.obj.id = "player";
-	//player.w = defpw;
-	//player.h = defph;
-	player.height = "40";
-	player.width = "30";
-	player.top = "50";
-	player.left = "50";
-	player.x = Math.random() * (scr_width - player.w);
-	player.y = Math.random() * (scr_height - player.h);
-	player.obj.style.left = player.left + "px";
-	player.obj.style.top = player.top + "px";
-	player.obj.style.width = player.width + "px";
-	player.obj.style.height = player.height + "px";
-	player.obj.style.display = "flex";
-	player.obj.style.alignItems = "center";
-	player.obj.style.flexDirection = "column";
-	
-	player.obj.style.position = "absolute";
-	//player.obj.style.transform = "translate(-50%, -50%)";
-	player.obj.style.zIndex = "5";
-	player.obj.style.transition = "left ease-in-out 0.01s, top ease-in-out 0.01s";
-	var playerHead = document.createElement("div");
-	playerHead.classList.add("head");
-	playerHead.style.height = "11";
-	playerHead.style.width = "11";
-	playerHead.style.background = "gray";
-	playerHead.style.borderRadius = "4px 4px 0 0";
-	player.obj.appendChild(playerHead);
-	var playerNeck = document.createElement("div");
-	playerNeck.classList.add("neck");
-	playerNeck.style.height = "0.1538461538vh";
-	playerNeck.style.width = "0.6vh";
-	playerNeck.style.background = "gray";
-	player.obj.appendChild(playerNeck);
-	var playerTorso = document.createElement("div");
-	playerTorso.classList.add("torso");
-	playerTorso.style.height = "1.5vh";
-	playerTorso.style.width = "1.5vh";
-	playerTorso.style.background = "#ff0000";
-	player.obj.appendChild(playerTorso);
-	var playerArms = document.createElement("div");
-	playerArms.classList.add("arms");
-	playerArms.style.position = "relative";
-	playerArms.style.bottom = "1.5vh";
-	playerArms.style.right = "0.95vh";
-	player.obj.appendChild(playerArms);
-	var playerArmL = document.createElement("div");
-	playerArmL.classList.add("left");
-	playerArmL.classList.add("arm");
-	playerArmL.style.height = "1.3vh";
-	playerArmL.style.width = "0.45vh";
-	playerArmL.style.position = "absolute";
-	playerArmL.style.background = "#ff0000";
-	playerArmL.style.left = "-0.25vh";
-	playerArmL.style.transform = "rotate(10deg)";
-	playerArms.appendChild(playerArmL);
-	var playerArmR = document.createElement("div");
-	playerArmR.classList.add("right");
-	playerArmR.classList.add("arm");
-	playerArmR.style.height = "1.3vh";
-	playerArmR.style.width = "0.45vh";
-	playerArmR.style.position = "absolute";
-	playerArmR.style.background = "#ff0000";
-	playerArmR.style.left = "1.65vh";
-	playerArmR.style.transform = "rotate(345deg)";
-	playerArms.appendChild(playerArmR);
-	var playerLegs = document.createElement("div");
-	playerLegs.classList.add("legs");
-	playerLegs.style.position = "relative";
-	playerLegs.style.left = "-0.2vh";
-	playerLegs.style.height = "1.45vh";
-	player.obj.appendChild(playerLegs);
-	var playerLegL = document.createElement("div");
-	playerLegL.classList.add("left");
-	playerLegL.classList.add("leg");
-	playerLegL.style.height = "1.45vh";
-	playerLegL.style.width = "0.6vh";
-	playerLegL.style.background = "black";
-	playerLegL.style.position = "absolute";
-	playerLegL.style.left = "-0.5vh";
-	playerLegs.appendChild(playerLegL);
-	var playerLegR = document.createElement("div");
-	playerLegR.classList.add("right");
-	playerLegR.classList.add("leg");
-	playerLegR.style.height = "1.45vh";
-	playerLegR.style.width = "0.6vh";
-	playerLegR.style.background = "black";
-	playerLegR.style.position = "absolute";
-	playerLegR.style.left = "0.35vh";
-	playerLegs.appendChild(playerLegR);
+	player.obj.innerHTML = "&nbsp;";
+	player.w = defpw;
+	player.h = defph;
+	player.x = 50;
+	player.y = 500;
+	player.obj.style.left = player.x + "px";
+	player.obj.style.top = player.y + "px";
+	player.obj.style.width = player.w + "px";
+	player.obj.style.width = player.h + "px";
 	document.body.appendChild(player.obj);
 }
 
+function createObstacle() {
+	for (n = 0; n < obcount; n++) {
+		let o = {};
+		o.obj = document.createElement('DIV');
+		o.w = defobw;
+		o.h = defobh;
+		o.x = Math.random() * (scr_width - o.w);
+		o.y = Math.random() * (scr_height - o.h);
+		o.obj.classList.add("obstacle");
+		o.obj.style.left = o.x + "px";
+		o.obj.style.top = o.y + "px";
+		o.obj.style.width = o.w + "px";
+		o.obj.style.height = o.h + "px";
+		if (n % 2 == 0) o.obj.style.backgroundColor = "yellow";
+		obstacles[n] = o;
+		document.body.appendChild(o.obj);
+	}
+}
+
+function createZombie(x, y, w, h) {
+	let o = {};
+	o.obj = document.createElement('DIV');
+	o.w = w;
+	o.h = h;
+	o.x = x;												
+	o.y = y;
+	o.obj.classList.add("zombie");
+	o.obj.style.left = o.x + "px";
+	o.obj.style.top = o.y + "px";
+	o.obj.style.width = o.w + "px";
+	o.obj.style.height = o.h + "px";
+	obstacles[n] = o;
+	document.body.appendChild(o.obj);
+}
+
 function timerHandler() {
-	info.innerHTML = `${player.x} ${player.y}`;
+	//info.innerHTML = `${player.x} ${player.y}`;
 	if (leftpressed && player.x >= p_speed) player.x -= p_speed;
 	if (leftpressed && player.x < p_speed) player.x = 0;
 	if (rightpressed && player.x + player.w <= scr_width - p_speed) player.x += p_speed;
@@ -244,28 +202,4 @@ function timerHandler() {
 	collisiondetection();
 }
 
-window.addEventListener('load', setup);
-
-function createObstacle() {
-	// count number of elements with class obstacle
-	let obstacles = document.getElementsByClassName('obstacle');
-
-	for (n = 0; n < obstacles.length; n++) {
-		console.log(obstacles[n]);
-		obst = obstacles[n];
-		var obstacleW = obstacles[n].width;
-		console.log(obstacleW);
-		var obstacleH = obstacles[n].height;
-		var obstacleX = Math.random() * (scr_width - obstacleW);
-		var obstacleY = Math.random() * (scr_height - obstacleH);
-		//obst.classList.add("obstacle");
-		obst.style.left = obstacleX + "px";
-		obst.style.top = obstacleY + "px";
-		obst.style.width = obstacleW;
-		obst.style.height = obstacleH;
-		console.log(obstacleX);
-		obstacles[n].style.left = obstacleX + "px";
-		//$(this).css("left", obstacleX + "px");
-	};
-}
-createObstacle();
+//window.addEventListener('load', setup);
